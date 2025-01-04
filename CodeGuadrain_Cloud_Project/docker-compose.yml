@@ -1,0 +1,16 @@
+version: '3'
+services:
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=codeguardian.settings
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

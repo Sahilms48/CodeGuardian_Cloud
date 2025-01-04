@@ -1,0 +1,56 @@
+---
+import { marked } from 'marked';
+
+interface Props {
+  content: string;
+  title: string;
+}
+
+const { content, title } = Astro.props;
+const htmlContent = marked(content);
+---
+
+<div class="markdown-content">
+  <h2>{title}</h2>
+  <div set:html={htmlContent} />
+</div>
+
+<style>
+  .markdown-content {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .markdown-content h2 {
+    color: #333;
+    margin-bottom: 1rem;
+  }
+
+  .markdown-content :global(h1),
+  .markdown-content :global(h2),
+  .markdown-content :global(h3),
+  .markdown-content :global(h4) {
+    color: #333;
+    margin: 1rem 0;
+  }
+
+  .markdown-content :global(p) {
+    margin: 1rem 0;
+    line-height: 1.6;
+  }
+
+  .markdown-content :global(ul),
+  .markdown-content :global(ol) {
+    margin: 1rem 0;
+    padding-left: 2rem;
+  }
+
+  .markdown-content :global(code) {
+    background: #f4f4f4;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+  }
+</style>
